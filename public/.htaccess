@@ -1,0 +1,11 @@
+# Allow From All
+# Satisfy Any
+
+# Options FollowSymLinks
+# RewriteEngine On
+# RewriteRule ^films/?$ films.php
+# RewriteRule ^films/([^/]+)/?$ films.php?action=getFilm&id=$1
+# RewriteRule ^films/([^/]+)/resume/?$ films.php?action=getFilmResume&id=$1
+# RewriteRule ^genres/?$ films.php?action=listOfGenres
+# RewriteRule ^genres/(.+)/?$ films.php?action=getListOfFilmsByGenre&genre=$1
+# RewriteRule ^films/search/([^/]+)/?$ films.php?action=getFilms&title=$1 [B]
