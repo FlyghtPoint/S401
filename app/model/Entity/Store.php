@@ -8,7 +8,7 @@ use Entity\Stock;
 use Entity\Employee;
 
 /**
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Repository\StoreRepository")
  * @ORM\Table(name="stores")
  */
 class Store

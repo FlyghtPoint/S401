@@ -36,11 +36,20 @@ class ComposerStaticInit0e657f65c1860401967558dd115291e2
             'Symfony\\Component\\Console\\' => 26,
             'Symfony\\Component\\Cache\\' => 24,
         ),
+        'R' => 
+        array (
+            'Repository\\' => 11,
+        ),
         'P' => 
         array (
             'Psr\\Log\\' => 8,
+            'Psr\\Http\\Message\\' => 17,
             'Psr\\Container\\' => 14,
             'Psr\\Cache\\' => 10,
+        ),
+        'E' => 
+        array (
+            'Entity\\' => 7,
         ),
         'D' => 
         array (
@@ -115,9 +124,17 @@ class ComposerStaticInit0e657f65c1860401967558dd115291e2
         array (
             0 => __DIR__ . '/..' . '/symfony/cache',
         ),
+        'Repository\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/app/model/Repository',
+        ),
         'Psr\\Log\\' => 
         array (
             0 => __DIR__ . '/..' . '/psr/log/Psr/Log',
+        ),
+        'Psr\\Http\\Message\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/psr/http-message/src',
         ),
         'Psr\\Container\\' => 
         array (
@@ -126,6 +143,10 @@ class ComposerStaticInit0e657f65c1860401967558dd115291e2
         'Psr\\Cache\\' => 
         array (
             0 => __DIR__ . '/..' . '/psr/cache/src',
+        ),
+        'Entity\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/app/model/Entity',
         ),
         'Doctrine\\Persistence\\' => 
         array (
@@ -169,13 +190,9 @@ class ComposerStaticInit0e657f65c1860401967558dd115291e2
         ),
         'Doctrine\\Common\\' => 
         array (
-            0 => __DIR__ . '/..' . '/doctrine/event-manager/src',
-            1 => __DIR__ . '/..' . '/doctrine/common/src',
+            0 => __DIR__ . '/..' . '/doctrine/common/src',
+            1 => __DIR__ . '/..' . '/doctrine/event-manager/src',
         ),
-    );
-
-    public static $fallbackDirsPsr0 = array (
-        0 => __DIR__ . '/../..' . '/src',
     );
 
     public static $classMap = array (
@@ -194,7 +211,6 @@ class ComposerStaticInit0e657f65c1860401967558dd115291e2
         return \Closure::bind(function () use ($loader) {
             $loader->prefixLengthsPsr4 = ComposerStaticInit0e657f65c1860401967558dd115291e2::$prefixLengthsPsr4;
             $loader->prefixDirsPsr4 = ComposerStaticInit0e657f65c1860401967558dd115291e2::$prefixDirsPsr4;
-            $loader->fallbackDirsPsr0 = ComposerStaticInit0e657f65c1860401967558dd115291e2::$fallbackDirsPsr0;
             $loader->classMap = ComposerStaticInit0e657f65c1860401967558dd115291e2::$classMap;
 
         }, null, ClassLoader::class);

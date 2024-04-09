@@ -1,4 +1,6 @@
 <?php
+
+use App\Controller\StoreController;
 // return [
 //     // Front office routes
 //     '' => [
@@ -42,4 +44,10 @@
 //         'action' => 'register',
 //     ],
 // ];
+
+return [
+    // Route for the GET method
+    ['path' => '/stores', 'controller' => StoreController::class, 'action' => 'index', 'method' => 'GET']
+    // Other routes
+]
 ?>
