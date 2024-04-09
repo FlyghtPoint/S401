@@ -2,4 +2,4 @@ Require all granted
 Options FollowSymLinks
 
 RewriteEngine On
-RewriteRule ^stores$ app/controller/StoreController.php
+RewriteRule ^stores$ /S401/public/index.php [L]

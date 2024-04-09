@@ -1,5 +1,16 @@
 <?php
 require_once __DIR__.'/../app/bootstrap.php';
+require __DIR__.'/../app/router.php';
+$routes = require __DIR__.'/../app/config/routes.php';
 
-echo 'Hello, world! oziuehifsudhfisduhf';
+$router = new Router();
+
+$method = $_SERVER['REQUEST_METHOD'];
+$url = $_SERVER['REQUEST_URI'];
+
+foreach ($routes as $route) {
+    $router->addRoute($route['method'], $route['path'], [$route['controller'], $route['action']]);
+}
+
+$router->dispatch($method, $url);
 ?>

@@ -65,6 +65,10 @@ class ComposerStaticInit0e657f65c1860401967558dd115291e2
             'Doctrine\\Common\\Annotations\\' => 28,
             'Doctrine\\Common\\' => 16,
         ),
+        'A' => 
+        array (
+            'App\\' => 4,
+        ),
     );
 
     public static $prefixDirsPsr4 = array (
@@ -192,6 +196,10 @@ class ComposerStaticInit0e657f65c1860401967558dd115291e2
         array (
             0 => __DIR__ . '/..' . '/doctrine/common/src',
             1 => __DIR__ . '/..' . '/doctrine/event-manager/src',
+        ),
+        'App\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/app',
         ),
     );
 

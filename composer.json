@@ -9,6 +9,7 @@
 	},
 	"autoload": {
 		"psr-4": {
+			"App\\": "app/",
 			"Entity\\": "app/model/Entity/",
 			"Repository\\": "app/model/Repository/"
 		}

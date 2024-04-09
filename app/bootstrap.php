@@ -8,7 +8,7 @@ use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\ORMSetup;
 
 // Create a simple "default" Doctrine ORM configuration for Attributes
-$paths = array(__DIR__."/model/Entity");
+$paths = array(__DIR__."/Model/Entity");
 $isDevMode = true;
 
 $config = ORMSetup::createAnnotationMetadataConfiguration($paths,$isDevMode);
