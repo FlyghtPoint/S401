@@ -3,3 +3,4 @@ Options FollowSymLinks
 
 RewriteEngine On
 RewriteRule ^stores$ /S401/public/index.php [L]
+RewriteRule ^products$ /S401/public/index.php [L]

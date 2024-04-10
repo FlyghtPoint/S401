@@ -2,6 +2,7 @@
 // src/Entity/Category.php
 namespace Entity;
 
+use JsonSerializable;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -11,7 +12,7 @@ use Entity\Product;
  * @ORM\Entity
  * @ORM\Table(name="categories")
  */
-class Category
+class Category implements JsonSerializable
 {
     /** @var int */
     /**
@@ -80,8 +81,16 @@ class Category
     }
 
     // -------------------------------------
+
     public function __toString()
     {
         return "{$this->categoryId}: {$this->categoryName}\n";
+    }
+
+    public function jsonSerialize(): mixed
+    {
+        return [
+            'name' => $this->categoryName,
+        ];
     }
 }

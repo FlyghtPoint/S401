@@ -2,6 +2,7 @@
 // src/Entity/Brand.php
 namespace Entity;
 
+use JsonSerializable;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -11,7 +12,7 @@ use Entity\Product;
  * @ORM\Entity
  * @ORM\Table(name="brands")
  */
-class Brand
+class Brand implements JsonSerializable
 {
     /** @var int */
     /**
@@ -87,8 +88,16 @@ class Brand
     }
 
     // -------------------------------------
+    
     public function __toString()
     {
         return "{$this->brandId}: {$this->brandName}\n";
+    }
+
+    public function jsonSerialize(): mixed
+    {
+        return [
+            'name' => $this->brandName,
+        ];
     }
 }

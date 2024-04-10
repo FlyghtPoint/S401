@@ -1,6 +1,7 @@
 <?php
 namespace Entity;
 
+use JsonSerializable;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -9,10 +10,10 @@ use Entity\Category;
 use Entity\Stock;
 
 /**
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Repository\ProductRepository")
  * @ORM\Table(name="products")
  */
-class Product
+class Product implements JsonSerializable
 {
     /** @var int */
     /**
@@ -193,8 +194,22 @@ class Product
     }
 
     // -------------------------------------
+
     public function __toString()
     {
         return "{$this->productId} : {$this->productName}. Brand: {$this->brandId}. Category: {$this->categoryId}. Model Year: {$this->modelYear}. List Price: {$this->listPrice}\n";
+    }
+
+    public function jsonSerialize(): mixed
+    {
+        return [
+            'id' => $this->productId,
+            'name' => $this->productName,
+            'brand' => $this->brand,
+            'category' => $this->category,
+            'year' => $this->modelYear,
+            'price' => $this->listPrice,
+            'stock' => $this->productStocks,
+        ];
     }
 }

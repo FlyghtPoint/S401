@@ -1,6 +1,7 @@
 <?php
 namespace Entity;
 
+use JsonSerializable;
 use Doctrine\ORM\Mapping as ORM;
 use Entity\Product;
 
@@ -8,7 +9,7 @@ use Entity\Product;
  * @ORM\Entity
  * @ORM\Table(name="stocks")
  */
-class Stock
+class Stock implements JsonSerializable
 {
     /** @var int */
     /**
@@ -117,8 +118,21 @@ class Stock
         return $this;
     }
     // -------------------------------------
+
     public function __toString()
     {
         return "{$this->stockId}. Store ID: {$this->storeId}. Product ID: {$this->product->product_id}, quantity: {$this->quantity}\n";
+    }
+
+    public function jsonSerialize(): mixed
+    {
+        return [
+            'id' => $this->stockId,
+            'store' => [
+                'id' => $this->store->getStoreId(),
+                'name' => $this->store->getStoreName(),
+            ],
+            'quantity' => $this->quantity,
+        ];
     }
 }

@@ -2,8 +2,10 @@
 require_once __DIR__.'/../bootstrap.php';
 
 use App\Controller\StoreController;
+use App\Controller\ProductController;
 
 $storeController = new StoreController($entityManager);
+$productController = new ProductController($entityManager);
 
 return [
     // Front office routes
@@ -56,9 +58,4 @@ return [
     //     'action' => 'register',
     // ],
 ];
-// return [
-//     // Route for the GET method
-//     ['path' => '/stores', 'controller' => StoreController::class, 'action' => 'index', 'method' => 'GET']
-//     // Other routes
-// ]
 ?>
