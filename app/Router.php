@@ -10,9 +10,11 @@ class Router {
     public function dispatch($method, $url) {
         foreach ($this->routes as $route) {
             list($routeMethod, $routeUrl, $handler) = $route;
-            if ($method === $routeMethod && $url === $routeUrl) {
-                call_user_func($handler);
-                return;
+            if ($method === $routeMethod) {
+                if (preg_match('#^' . $routeUrl . '$#', $url, $matches)) {
+                    call_user_func($handler, $matches);
+                    return;
+                }
             }
         }
         // If no route is found

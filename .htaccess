@@ -2,5 +2,5 @@ Require all granted
 Options FollowSymLinks
 
 RewriteEngine On
-RewriteRule ^stores$ /S401/public/index.php [L]
-RewriteRule ^products$ /S401/public/index.php [L]
+RewriteRule ^(stores|products|employees)$ /S401/public/index.php [L]
+RewriteRule ^stores/(\d+)/employees$ /S401/public/index.php [L]

@@ -21,8 +21,8 @@ class ProductController {
         $products = $productsRepository->getAllProducts();
 
         $productData = [];
+
         foreach ($products as $product) {
-            // var_dump($product->getStocks());s
             $productData[] = [
                 'id' => $product->getProductId(),
                 'name' => $product->getProductName(),

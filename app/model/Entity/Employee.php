@@ -1,6 +1,7 @@
 <?php
 namespace Entity;
 
+use JsonSerializable;
 use Doctrine\ORM\Mapping as ORM;
 use Entity\Store;
 
@@ -8,7 +9,7 @@ use Entity\Store;
  * @ORM\Entity
  * @ORM\Table(name="employees")
  */
-class Employee
+class Employee implements JsonSerializable
 {
     /** @var int */
     /**
@@ -168,8 +169,20 @@ class Employee
         return $this;
     }
     // -------------------------------------
+
     public function __toString()
     {
         return "{$this->employeeId}: {$this->employeeName}, {$this->employeeEmail}, {$this->employeePassword}, {$this->employeeRole}. Store ID: {$this->storeId}.\n";
+    }
+
+    public function jsonSerialize(): mixed
+    {
+        return [
+            'employeeId' => $this->employeeId,
+            'employeeName' => $this->employeeName,
+            // 'employeeEmail' => $this->employeeEmail,
+            // 'employeeRole' => $this->employeeRole,
+            // 'storeId' => $this->store->getStoreId()
+        ];
     }
 }
