@@ -66,23 +66,23 @@ return [
 
     //! Back office routes (private routes) : POST, PUT, DELETE
 
-    //? Store
+    //? Brand
 
-    // 'admin/store/add' 
+    // 'admin/brands/add' 
     [
         'method' => 'POST',
         'path' => '/S401/brands',
         'controller' => $brandController,
         'action' => 'addBrand',
     ],
-    // 'admin/store/edit/{id}'
+    // 'admin/brands/edit/{id}'
     [
         'method' => 'PUT',
         'path' => '/S401/brands/(?P<brandId>\d+)',
         'controller' => $brandController,
         'action' => 'updateBrand',
     ],
-    // 'admin/store/delete/{id}'
+    // 'admin/brands/delete/{id}'
     [
         'method' => 'DELETE',
         'path' => '/S401/brands/(?P<brandId>\d+)',
@@ -114,6 +114,29 @@ return [
         'action' => 'deleteCategory',
     ],
 
+    //? Product
+
+    // 'admin/products/add'
+    [
+        'method' => 'POST',
+        'path' => '/S401/products/add',
+        'controller' => $productController,
+        'action' => 'addProduct',
+    ],
+    // 'admin/products/edit/{id}'
+    [
+        'method' => 'PUT',
+        'path' => '/S401/products/edit/(?P<productId>\d+)',
+        'controller' => $productController,
+        'action' => 'updateProduct',
+    ],
+    // 'admin/products/delete/{id}'
+    [
+        'method' => 'DELETE',
+        'path' => '/S401/products/delete/(?P<productId>\d+)',
+        'controller' => $productController,
+        'action' => 'deleteProduct',
+    ],
 
 
     // 'admin' => [

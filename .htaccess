@@ -2,6 +2,17 @@ Require all granted
 Options FollowSymLinks
 
 RewriteEngine On
-RewriteRule ^(brands|stores|products|employees|categories)$ /S401/public/index.php [L]
+# Get all
+RewriteRule ^(brands|stores|products|employees|categories|stocks)$ /S401/public/index.php [L]
+
+# Get employees by store
 RewriteRule ^stores/(\d+)/employees$ /S401/public/index.php [L]
-RewriteRule ^(brands|categories)/(\d+)$ /S401/public/index.php [L]
+
+# Add
+RewriteRule ^(brands|stores|products|employees|categories|stocks)/add$ /S401/public/index.php [L] 
+
+# Update
+RewriteRule ^(brands|categories|products|stocks|stores)/edit/(\d+)$ /S401/public/index.php [L]
+
+# Delete
+RewriteRule ^(brands|categories|products|stocks|stores)/delete/(\d+)$ /S401/public/index.php [L]
