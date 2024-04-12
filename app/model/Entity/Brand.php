@@ -9,7 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Entity\Product;
 
 /**
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Repository\BrandRepository")
  * @ORM\Table(name="brands")
  */
 class Brand implements JsonSerializable

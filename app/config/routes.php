@@ -4,10 +4,12 @@ require_once __DIR__.'/../bootstrap.php';
 use App\Controller\StoreController;
 use App\Controller\ProductController;
 use App\Controller\EmployeeController;
+use App\Controller\BrandController;
 
 $storeController = new StoreController($entityManager);
 $productController = new ProductController($entityManager);
 $employeeController = new EmployeeController($entityManager);
+$brandController = new BrandController($entityManager);
 
 return [
     // Front office routes
@@ -46,6 +48,24 @@ return [
     // ],
 
     // Back office routes
+    [
+        'method' => 'POST',
+        'path' => '/S401/brands',
+        'controller' => $brandController,
+        'action' => 'addBrand',
+    ],
+    [
+        'method' => 'PUT',
+        'path' => '/S401/brands/(?P<brandId>\d+)',
+        'controller' => $brandController,
+        'action' => 'updateBrand',
+    ],
+    [
+        'method' => 'DELETE',
+        'path' => '/S401/brands/(?P<brandId>\d+)',
+        'controller' => $brandController,
+        'action' => 'deleteBrand',
+    ],
     // 'admin' => [
     //     'controller' => 'BackController',
     //     'action' => 'dashboard',
