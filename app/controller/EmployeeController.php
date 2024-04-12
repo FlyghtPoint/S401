@@ -47,5 +47,14 @@ class EmployeeController {
         header('Content-Type: application/json');
         echo json_encode($employeesData);
     }
+
+    // Add a new employee to any store
+    public function addEmployee() {}
+
+    // Add a new employee from the chief store
+    public function addEmployeeToStore() {}
+
+    // Modify login informations
+    public function updateEmployeeLogin() {}
 }
 ?>

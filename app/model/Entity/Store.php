@@ -1,6 +1,7 @@
 <?php
 namespace Entity;
 
+use JsonSerializable;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -11,7 +12,7 @@ use Entity\Employee;
  * @ORM\Entity(repositoryClass="Repository\StoreRepository")
  * @ORM\Table(name="stores")
  */
-class Store
+class Store implements JsonSerializable
 {
     /** @var int */
     /**
@@ -264,8 +265,16 @@ class Store
     }
 
     // -------------------------------------
+
     public function __toString()
     {
         return "{$this->storeId}: {$this->storeName}. Phone: {$this->phone}, email: {$this->email}, street: {$this->street}, city: {$this->city}, state: {$this->state}, zip code: {$this->zipCode}\n";
+    }
+
+    public function jsonSerialize(): mixed
+    {
+        return [
+            'name' => $this->storeName,
+        ];
     }
 }

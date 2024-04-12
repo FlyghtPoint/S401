@@ -3,7 +3,9 @@
 namespace App\Controller;
 
 use Entity\Store;
-use Repository\StoreRepository;
+use Entity\Stock;
+use Entity\Employee;
+// use Repository\StoreRepository;
 
 class StoreController {
     private $entityManager;
@@ -34,5 +36,7 @@ class StoreController {
         header('Content-Type: application/json');
         echo json_encode($storeData);
     }
+
+    // Add a new store
 }
 ?>

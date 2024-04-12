@@ -37,5 +37,14 @@ class ProductController {
         header('Content-Type: application/json');
         echo json_encode($productData);
     }
+
+    // Add a new product
+    public function addProduct() {}
+
+    // Update a product
+    public function updateProduct() {}
+
+    // Delete a product
+    public function deleteProduct() {}
 }
 ?>

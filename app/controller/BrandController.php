@@ -4,7 +4,7 @@ namespace App\Controller;
 
 use Entity\Brand;
 use Entity\Product;
-use Repository\BrandRepository;
+// use Repository\BrandRepository;
 
 class BrandController {
     private $entityManager;
