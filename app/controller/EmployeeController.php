@@ -13,6 +13,9 @@ class EmployeeController {
         $this->entityManager = $entityManager;
     }
 
+    // API key
+    const API_KEY = 'e8f1997c763';
+
     // Get all employees
     public function getAllEmployees() {
         $employees = $this->entityManager->getRepository(Employee::class)->findAll();
@@ -90,6 +93,12 @@ class EmployeeController {
 
     // Add a new employee from the chief store
     public function addEmployeeToStore() {
+        $headers = apache_request_headers();
+        if (!isset($headers['Authorization']) || $headers['Authorization'] !== 'Bearer '.self::API_KEY) {
+            echo json_encode(['error' => 'Invalid API key']);
+            return;
+        }
+
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if (!isset($_POST['chiefId']) || !isset($_POST['employeeName']) || !isset($_POST['employeeEmail']) || !isset($_POST['employeePassword'])) {
                 echo json_encode(['error' => 'Missing required fields']);
