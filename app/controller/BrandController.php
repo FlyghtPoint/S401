@@ -26,7 +26,7 @@ class BrandController {
 
             return $brand;
         } else {
-            echo json_encode(['error' => 'Invalid request method']);
+            echo json_encode(['error' => 'Invalid request']);
             return;
         }
     }

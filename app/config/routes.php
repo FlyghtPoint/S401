@@ -5,38 +5,55 @@ use App\Controller\StoreController;
 use App\Controller\ProductController;
 use App\Controller\EmployeeController;
 use App\Controller\BrandController;
+use App\Controller\CategoryController;
 
 $storeController = new StoreController($entityManager);
 $productController = new ProductController($entityManager);
 $employeeController = new EmployeeController($entityManager);
 $brandController = new BrandController($entityManager);
+$categoryController = new CategoryController($entityManager);
 
 return [
-    // Front office routes
+
+    //! Front office routes (public routes) : GET
+    
+    //? Store
+
+    // 'stores'
     [
         'method' => 'GET',
         'path' => '/S401/stores',
         'controller' => $storeController,
         'action' => 'getAllStores',
     ],
-    [
-        'method' => 'GET',
-        'path' => '/S401/products',
-        'controller' => $productController,
-        'action' => 'getAllProducts',
-    ],
-    [
-        'method' => 'GET',
-        'path' => '/S401/employees',
-        'controller' => $employeeController,
-        'action' => 'getAllEmployees',
-    ],
+    // 'store/{id}' 
     [
         'method' => 'GET',
         'path' => '/S401/stores/(?P<storeId>\d+)/employees',
         'controller' => $employeeController,
         'action' => 'getEmployeesFromStore',
     ],
+
+    //? Product
+
+    // 'products'
+    [
+        'method' => 'GET',
+        'path' => '/S401/products',
+        'controller' => $productController,
+        'action' => 'getAllProducts',
+    ],
+
+    //? Employee
+
+    // 'employees'
+    [
+        'method' => 'GET',
+        'path' => '/S401/employees',
+        'controller' => $employeeController,
+        'action' => 'getAllEmployees',
+    ],
+
     // '' => [
     //     'controller' => 'FrontController',
     //     'action' => 'index',
@@ -47,25 +64,58 @@ return [
     //     'action' => 'productDetails',
     // ],
 
-    // Back office routes
+    //! Back office routes (private routes) : POST, PUT, DELETE
+
+    //? Store
+
+    // 'admin/store/add' 
     [
         'method' => 'POST',
         'path' => '/S401/brands',
         'controller' => $brandController,
         'action' => 'addBrand',
     ],
+    // 'admin/store/edit/{id}'
     [
         'method' => 'PUT',
         'path' => '/S401/brands/(?P<brandId>\d+)',
         'controller' => $brandController,
         'action' => 'updateBrand',
     ],
+    // 'admin/store/delete/{id}'
     [
         'method' => 'DELETE',
         'path' => '/S401/brands/(?P<brandId>\d+)',
         'controller' => $brandController,
         'action' => 'deleteBrand',
     ],
+
+    // ? Category
+
+    // 'admin/category/add'
+    [
+        'method' => 'POST',
+        'path' => '/S401/categories',
+        'controller' => $categoryController,
+        'action' => 'addCategory',
+    ],
+    // 'admin/category/edit/{id}'
+    [
+        'method' => 'PUT',
+        'path' => '/S401/categories/(?P<categoryId>\d+)',
+        'controller' => $categoryController,
+        'action' => 'updateCategory',
+    ],
+    // 'admin/category/delete/{id}'
+    [
+        'method' => 'DELETE',
+        'path' => '/S401/categories/(?P<categoryId>\d+)',
+        'controller' => $categoryController,
+        'action' => 'deleteCategory',
+    ],
+
+
+
     // 'admin' => [
     //     'controller' => 'BackController',
     //     'action' => 'dashboard',
