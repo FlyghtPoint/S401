@@ -4,6 +4,7 @@ namespace Entity;
 use JsonSerializable;
 use Doctrine\ORM\Mapping as ORM;
 use Entity\Product;
+use Entity\Store;
 
 /**
  * @ORM\Entity
@@ -25,12 +26,6 @@ class Stock implements JsonSerializable
      * @ORM\JoinColumn(name="store_id", referencedColumnName="store_id")
      */
     private Store $store;
-
-    // /** @var int */
-    // /**
-    //  * @ORM\Column(type="integer", name="store_id")
-    //  */
-    // private int $storeId;
 
     /** @var Product */
     /**

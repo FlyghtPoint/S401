@@ -9,7 +9,10 @@ RewriteRule ^(brands|stores|products|employees|categories|stocks)$ /S401/public/
 RewriteRule ^stores/(\d+)/employees$ /S401/public/index.php [L]
 
 # Add
-RewriteRule ^(brands|stores|products|employees|categories|stocks)/add$ /S401/public/index.php [L] 
+RewriteRule ^(brands|stores|products|employees|categories|stocks)/add$ /S401/public/index.php [L]
+
+# Add employee to store
+RewriteRule ^chief/employees/add$ /S401/public/index.php [L]
 
 # Update
 RewriteRule ^(brands|categories|products|stocks|stores)/edit/(\d+)$ /S401/public/index.php [L]

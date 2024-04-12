@@ -1,17 +1,19 @@
 <?php
 require_once __DIR__.'/../bootstrap.php';
 
-use App\Controller\StoreController;
-use App\Controller\ProductController;
-use App\Controller\EmployeeController;
 use App\Controller\BrandController;
 use App\Controller\CategoryController;
+use App\Controller\EmployeeController;
+use App\Controller\ProductController;
+use App\Controller\StockController;
+use App\Controller\StoreController;
 
-$storeController = new StoreController($entityManager);
-$productController = new ProductController($entityManager);
-$employeeController = new EmployeeController($entityManager);
 $brandController = new BrandController($entityManager);
 $categoryController = new CategoryController($entityManager);
+$employeeController = new EmployeeController($entityManager);
+$productController = new ProductController($entityManager);
+$stockController = new StockController($entityManager);
+$storeController = new StoreController($entityManager);
 
 return [
 
@@ -114,6 +116,23 @@ return [
         'action' => 'deleteCategory',
     ],
 
+    //? Employee
+
+    // 'it/employees/add'
+    [
+        'method' => 'POST',
+        'path' => '/S401/employees/add',
+        'controller' => $employeeController,
+        'action' => 'addEmployee',
+    ],
+    // 'chief/employees/add'
+    [
+        'method' => 'POST',
+        'path' => '/S401/chief/employees/add',
+        'controller' => $employeeController,
+        'action' => 'addEmployeeToStore',
+    ],
+
     //? Product
 
     // 'admin/products/add'
@@ -138,7 +157,54 @@ return [
         'action' => 'deleteProduct',
     ],
 
+    //? Stock
 
+    // 'admin/stocks/add'
+    [
+        'method' => 'POST',
+        'path' => '/S401/stocks/add',
+        'controller' => $stockController,
+        'action' => 'addStock',
+    ],
+    // 'admin/stocks/edit/{id}'
+    [
+        'method' => 'PUT',
+        'path' => '/S401/stocks/edit/(?P<stockId>\d+)',
+        'controller' => $stockController,
+        'action' => 'updateStock',
+    ],
+    // 'admin/stocks/delete/{id}'
+    [
+        'method' => 'DELETE',
+        'path' => '/S401/stocks/delete/(?P<stockId>\d+)',
+        'controller' => $stockController,
+        'action' => 'deleteStock',
+    ],
+
+    //? Store
+
+    // 'admin/stores/add'
+    [
+        'method' => 'POST',
+        'path' => '/S401/stores/add',
+        'controller' => $storeController,
+        'action' => 'addStore',
+    ],
+    // 'admin/stores/edit/{id}'
+    [
+        'method' => 'PUT',
+        'path' => '/S401/stores/edit/(?P<storeId>\d+)',
+        'controller' => $storeController,
+        'action' => 'updateStore',
+    ],
+    // 'admin/stores/delete/{id}'
+    [
+        'method' => 'DELETE',
+        'path' => '/S401/stores/delete/(?P<storeId>\d+)',
+        'controller' => $storeController,
+        'action' => 'deleteStore',
+    ],
+    
     // 'admin' => [
     //     'controller' => 'BackController',
     //     'action' => 'dashboard',
