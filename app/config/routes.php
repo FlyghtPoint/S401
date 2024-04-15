@@ -132,6 +132,13 @@ return [
         'controller' => $employeeController,
         'action' => 'addEmployeeToStore',
     ],
+    // 'employees/edit/{id}
+    [
+        'method' => 'PUT',
+        'path' => '/S401/employees/edit/(?P<employeeId>\d+)',
+        'controller' => $employeeController,
+        'action' => 'updateEmployeeLogin',
+    ],
 
     //? Product
 

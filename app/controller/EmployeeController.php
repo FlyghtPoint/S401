@@ -141,6 +141,44 @@ class EmployeeController {
     }
 
     // Modify login informations
-    public function updateEmployeeLogin() {}
+    public function updateEmployeeLogin($params) {
+        $employeeId = $params['employeeId'];
+        if ($_SERVER['REQUEST_METHOD'] !== 'PUT') {
+            echo json_encode(['error' => 'Invalid request']);
+            return;
+        }
+        parse_str(file_get_contents('php://input'), $_PUT);
+        // Find the employee by ID
+        $employee = $this->entityManager->getRepository(Employee::class)->find($employeeId);
+
+        // If the employee does not exist, return an error
+        if (!$employee) {
+            echo json_encode(['error' => 'Employee not found']);
+            return;
+        }
+
+        $oldPassword = $employee->getEmployeePassword();
+
+        // Update the employee's login information
+        if (isset($_PUT['newEmail']) && isset($_PUT['newPassword'])) {
+            $newEmail = $_PUT['newEmail'];
+            $newPassword = password_hash($_PUT['newPassword'], PASSWORD_DEFAULT);
+            if ($newPassword === $oldPassword) {
+                echo json_encode(['error' => 'New password must be different from the old one']);
+            }
+            $employee->setEmployeeEmail($newEmail);
+            $employee->setEmployeePassword($newPassword);
+        } else {
+            echo json_encode(['error' => 'Missing required fields']);
+            return;
+        }
+
+        // Persist the changes and flush
+        $this->entityManager->persist($employee);
+        $this->entityManager->flush();
+
+        echo json_encode(['success' => 'Employee login information updated']);
+        return $employee;
+    }
 }
 ?>
