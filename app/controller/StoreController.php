@@ -17,7 +17,7 @@ class StoreController {
     // Get all stores
     public function getAllStores() {
         $storeRepository = $this->entityManager->getRepository(Store::class);
-        $stores = $storeRepository->getAllStores();
+        $stores = $storeRepository->findAll();
 
         $storeData = [];
         foreach ($stores as $store) {

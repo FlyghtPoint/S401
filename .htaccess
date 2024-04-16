@@ -2,6 +2,9 @@ Require all granted
 Options FollowSymLinks
 
 RewriteEngine On
+# Index
+# RewriteRule ^$ /S401/public/index.php [L]
+
 # Get all
 RewriteRule ^(brands|stores|products|employees|categories|stocks)$ /S401/public/index.php [L]
 

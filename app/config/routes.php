@@ -73,7 +73,7 @@ return [
     // 'admin/brands/add' 
     [
         'method' => 'POST',
-        'path' => '/S401/brands',
+        'path' => '/S401/brands/add',
         'controller' => $brandController,
         'action' => 'addBrand',
     ],

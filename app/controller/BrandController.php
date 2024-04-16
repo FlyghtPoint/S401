@@ -24,6 +24,7 @@ class BrandController {
             $this->entityManager->persist($brand);
             $this->entityManager->flush();
 
+            echo json_encode(['success' => 'Brand added']);
             return $brand;
         } else {
             echo json_encode(['error' => 'Invalid request']);
