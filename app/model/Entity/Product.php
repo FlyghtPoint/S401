@@ -200,7 +200,7 @@ class Product implements JsonSerializable
         return "{$this->productId} : {$this->productName}. Brand: {$this->brandId}. Category: {$this->categoryId}. Model Year: {$this->modelYear}. List Price: {$this->listPrice}\n";
     }
 
-    public function jsonSerialize(): mixed
+    public function jsonSerialize()
     {
         return [
             'id' => $this->productId,

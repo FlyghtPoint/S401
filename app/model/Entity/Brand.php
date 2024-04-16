@@ -94,7 +94,7 @@ class Brand implements JsonSerializable
         return "{$this->brandId}: {$this->brandName}\n";
     }
 
-    public function jsonSerialize(): mixed
+    public function jsonSerialize()
     {
         return [
             'name' => $this->brandName,

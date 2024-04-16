@@ -1,6 +1,6 @@
 <?php
 // Employee controller
-namespace App\Controller;
+namespace Controller;
 
 use Entity\Employee;
 use Entity\Store;

@@ -1,6 +1,6 @@
 <?php
 // Product controller
-namespace App\Controller;
+namespace Controller;
 
 use Entity\Product;
 use Entity\Brand;

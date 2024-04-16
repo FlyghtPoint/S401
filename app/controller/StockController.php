@@ -1,6 +1,6 @@
 <?php
 // Stock controller
-namespace App\Controller;
+namespace Controller;
 
 use Entity\Stock;
 use Entity\Product;

@@ -119,7 +119,7 @@ class Stock implements JsonSerializable
         return "{$this->stockId}. Store ID: {$this->storeId}. Product ID: {$this->product->product_id}, quantity: {$this->quantity}\n";
     }
 
-    public function jsonSerialize(): mixed
+    public function jsonSerialize()
     {
         return [
             'id' => $this->stockId,

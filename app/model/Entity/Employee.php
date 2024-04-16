@@ -175,7 +175,7 @@ class Employee implements JsonSerializable
         return "{$this->employeeId}: {$this->employeeName}, {$this->employeeEmail}, {$this->employeePassword}, {$this->employeeRole}. Store ID: {$this->storeId}.\n";
     }
 
-    public function jsonSerialize(): mixed
+    public function jsonSerialize()
     {
         return [
             'employeeId' => $this->employeeId,

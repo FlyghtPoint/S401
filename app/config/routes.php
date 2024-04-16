@@ -1,12 +1,12 @@
 <?php
 require_once __DIR__.'/../bootstrap.php';
 
-use App\Controller\BrandController;
-use App\Controller\CategoryController;
-use App\Controller\EmployeeController;
-use App\Controller\ProductController;
-use App\Controller\StockController;
-use App\Controller\StoreController;
+use Controller\BrandController;
+use Controller\CategoryController;
+use Controller\EmployeeController;
+use Controller\ProductController;
+use Controller\StockController;
+use Controller\StoreController;
 
 $brandController = new BrandController($entityManager);
 $categoryController = new CategoryController($entityManager);

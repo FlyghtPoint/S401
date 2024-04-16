@@ -87,7 +87,7 @@ class Category implements JsonSerializable
         return "{$this->categoryId}: {$this->categoryName}\n";
     }
 
-    public function jsonSerialize(): mixed
+    public function jsonSerialize()
     {
         return [
             'name' => $this->categoryName,

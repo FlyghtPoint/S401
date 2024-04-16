@@ -271,7 +271,7 @@ class Store implements JsonSerializable
         return "{$this->storeId}: {$this->storeName}. Phone: {$this->phone}, email: {$this->email}, street: {$this->street}, city: {$this->city}, state: {$this->state}, zip code: {$this->zipCode}\n";
     }
 
-    public function jsonSerialize(): mixed
+    public function jsonSerialize()
     {
         return [
             'name' => $this->storeName,

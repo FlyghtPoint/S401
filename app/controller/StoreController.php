@@ -1,6 +1,6 @@
 <?php
 // Store controller
-namespace App\Controller;
+namespace Controller;
 
 use Entity\Store;
 use Entity\Stock;

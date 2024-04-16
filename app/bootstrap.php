@@ -16,10 +16,10 @@ $config = ORMSetup::createAnnotationMetadataConfiguration($paths,$isDevMode);
 
 // configuring the database connection
 $connection = DriverManager::getConnection([
-    'dbname' => 's401',
-    'user' => 'root',
-    'password' => '',
-    'host' => 'localhost',
+    'dbname' => 'lefevre216_2',
+    'user' => 'lefevre216',
+    'password' => 'iadiToom3iechohp',
+    'host' => 'mysql.info.unicaen.fr:3306',
     'driver' => 'pdo_mysql',
 ], $config);
 
@@ -27,5 +27,3 @@ $connection = DriverManager::getConnection([
 $entityManager = new EntityManager($connection, $config);
 
 ?>
-
-

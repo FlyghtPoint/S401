@@ -69,9 +69,9 @@ class ComposerStaticInit0e657f65c1860401967558dd115291e2
             'Doctrine\\Common\\Annotations\\' => 28,
             'Doctrine\\Common\\' => 16,
         ),
-        'A' => 
+        'C' => 
         array (
-            'App\\' => 4,
+            'Controller\\' => 11,
         ),
     );
 
@@ -138,7 +138,7 @@ class ComposerStaticInit0e657f65c1860401967558dd115291e2
         ),
         'Repository\\' => 
         array (
-            0 => __DIR__ . '/../..' . '/app/model/Repository',
+            0 => __DIR__ . '/../..' . '/app/Model/Repository',
         ),
         'Psr\\Log\\' => 
         array (
@@ -158,7 +158,7 @@ class ComposerStaticInit0e657f65c1860401967558dd115291e2
         ),
         'Entity\\' => 
         array (
-            0 => __DIR__ . '/../..' . '/app/model/Entity',
+            0 => __DIR__ . '/../..' . '/app/Model/Entity',
         ),
         'Doctrine\\Persistence\\' => 
         array (
@@ -205,9 +205,9 @@ class ComposerStaticInit0e657f65c1860401967558dd115291e2
             0 => __DIR__ . '/..' . '/doctrine/common/src',
             1 => __DIR__ . '/..' . '/doctrine/event-manager/src',
         ),
-        'App\\' => 
+        'Controller\\' => 
         array (
-            0 => __DIR__ . '/../..' . '/app',
+            0 => __DIR__ . '/../..' . '/app/Controller',
         ),
     );
 
