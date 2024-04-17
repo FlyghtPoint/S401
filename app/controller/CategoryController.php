@@ -12,8 +12,25 @@ class CategoryController {
         $this->entityManager = $entityManager;
     }
 
+    // API key
+    const API_KEY = 'e8f1997c763';
+
+    // Write a function to verify the API key
+    public function verifyApiKey() {
+        $headers = apache_request_headers();
+        if (!isset($headers['Authorization']) || $headers['Authorization'] !== 'Bearer '.self::API_KEY) {
+            echo json_encode(['error' => 'Invalid API key']);
+            return false;
+        }
+        return true;
+    }
+
     // Add a new category
     public function addCategory() {
+        if (!$this->verifyApiKey()) {
+            return;
+        }
+
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['categoryName'])) {
             $categoryName = $_POST['categoryName'];
 
@@ -33,6 +50,10 @@ class CategoryController {
 
     // Update a category
     public function updateCategory($params) {
+        if (!$this->verifyApiKey()) {
+            return;
+        }
+
         $categoryId = $params['categoryId'];
         if ($_SERVER['REQUEST_METHOD'] === 'PUT') {
             parse_str(file_get_contents('php://input'), $_PUT);
@@ -59,6 +80,10 @@ class CategoryController {
 
     // Delete a category
     public function deleteCategory($params) {
+        if (!$this->verifyApiKey()) {
+            return;
+        }
+        
         $categoryId = $params['categoryId'];
         if ($_SERVER['REQUEST_METHOD'] === 'DELETE') {
             $category = $this->entityManager->getRepository(Category::class)->find($categoryId);

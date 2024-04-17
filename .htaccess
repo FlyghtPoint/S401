@@ -1,9 +1,14 @@
 Require all granted
+# Allow from all
+# Satisfy any
 Options FollowSymLinks
 
 RewriteEngine On
-# Index
-# RewriteRule ^$ /S401/public/index.php [L]
+
+RewriteCond %{REQUEST_METHOD} OPTIONS
+# RewriteRule .* %{REQUEST_URI} [L]
+# RewriteRule ^(.*)$ $1 [R=200,L]
+RewriteRule ^brands/add$ /S401/public/index.php [L] 
 
 # Get all
 RewriteRule ^(brands|stores|products|employees|categories|stocks)$ /S401/public/index.php [L]

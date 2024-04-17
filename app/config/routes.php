@@ -1,4 +1,5 @@
 <?php
+
 require_once __DIR__.'/../bootstrap.php';
 
 use Controller\BrandController;
@@ -80,14 +81,14 @@ return [
     // 'admin/brands/edit/{id}'
     [
         'method' => 'PUT',
-        'path' => '/S401/brands/(?P<brandId>\d+)',
+        'path' => '/S401/brands/edit/(?P<brandId>\d+)',
         'controller' => $brandController,
         'action' => 'updateBrand',
     ],
     // 'admin/brands/delete/{id}'
     [
         'method' => 'DELETE',
-        'path' => '/S401/brands/(?P<brandId>\d+)',
+        'path' => '/S401/brands/delete/(?P<brandId>\d+)',
         'controller' => $brandController,
         'action' => 'deleteBrand',
     ],
@@ -97,21 +98,21 @@ return [
     // 'admin/category/add'
     [
         'method' => 'POST',
-        'path' => '/S401/categories',
+        'path' => '/S401/categories/add',
         'controller' => $categoryController,
         'action' => 'addCategory',
     ],
     // 'admin/category/edit/{id}'
     [
         'method' => 'PUT',
-        'path' => '/S401/categories/(?P<categoryId>\d+)',
+        'path' => '/S401/categories/edit/(?P<categoryId>\d+)',
         'controller' => $categoryController,
         'action' => 'updateCategory',
     ],
     // 'admin/category/delete/{id}'
     [
         'method' => 'DELETE',
-        'path' => '/S401/categories/(?P<categoryId>\d+)',
+        'path' => '/S401/categories/delete/(?P<categoryId>\d+)',
         'controller' => $categoryController,
         'action' => 'deleteCategory',
     ],
