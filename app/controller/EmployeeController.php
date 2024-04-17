@@ -16,6 +16,16 @@ class EmployeeController {
     // API key
     const API_KEY = 'e8f1997c763';
 
+    // Write a function to verify the API key
+    public function verifyApiKey() {
+        $headers = apache_request_headers();
+        if (!isset($headers['Authorization']) || $headers['Authorization'] !== 'Bearer '.self::API_KEY) {
+            echo json_encode(['error' => 'Invalid API key']);
+            return false;
+        }
+        return true;
+    }
+
     // Get all employees
     public function getAllEmployees() {
         $employees = $this->entityManager->getRepository(Employee::class)->findAll();
@@ -53,6 +63,10 @@ class EmployeeController {
 
     // Add a new employee to any store
     public function addEmployee() {
+        if (!$this->verifyApiKey()) {
+            return;
+        }
+
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if (!isset($_POST['name']) || !isset($_POST['email']) || !isset($_POST['password']) || !isset($_POST['role']) || !isset($_POST['storeId'])) {
                 echo json_encode(['error' => 'Missing required fields']);
@@ -93,9 +107,7 @@ class EmployeeController {
 
     // Add a new employee from the chief store
     public function addEmployeeToStore() {
-        $headers = apache_request_headers();
-        if (!isset($headers['Authorization']) || $headers['Authorization'] !== 'Bearer '.self::API_KEY) {
-            echo json_encode(['error' => 'Invalid API key']);
+        if (!$this->verifyApiKey()) {
             return;
         }
 
@@ -142,6 +154,10 @@ class EmployeeController {
 
     // Modify login informations
     public function updateEmployeeLogin($params) {
+        if (!$this->verifyApiKey()) {
+            return;
+        }
+
         $employeeId = $params['employeeId'];
         if ($_SERVER['REQUEST_METHOD'] !== 'PUT') {
             echo json_encode(['error' => 'Invalid request']);
@@ -163,8 +179,10 @@ class EmployeeController {
         if (isset($_PUT['newEmail']) && isset($_PUT['newPassword'])) {
             $newEmail = $_PUT['newEmail'];
             $newPassword = password_hash($_PUT['newPassword'], PASSWORD_DEFAULT);
-            if ($newPassword === $oldPassword) {
+
+            if (password_verify($_PUT['newPassword'], $oldPassword)) {
                 echo json_encode(['error' => 'New password must be different from the old one']);
+                return;
             }
             $employee->setEmployeeEmail($newEmail);
             $employee->setEmployeePassword($newPassword);
