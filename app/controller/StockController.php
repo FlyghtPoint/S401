@@ -12,9 +12,26 @@ class StockController {
     public function __construct($entityManager) {
         $this->entityManager = $entityManager;
     }
+    
+    // API key
+    const API_KEY = 'e8f1997c763';
+
+    // Write a function to verify the API key
+    public function verifyApiKey() {
+        $headers = apache_request_headers();
+        if (!isset($headers['Authorization']) || $headers['Authorization'] !== 'Bearer '.self::API_KEY) {
+            echo json_encode(['error' => 'Invalid API key']);
+            return false;
+        }
+        return true;
+    }
 
     // Add a new stock
     public function addStock() {
+        if (!$this->verifyApiKey()) {
+            return;
+        }
+
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             if (!isset($_POST['productId']) || !isset($_POST['quantity']) || !isset($_POST['storeId'])) {
@@ -47,6 +64,10 @@ class StockController {
 
     // Update a stock
     public function updateStock($params) {
+        if (!$this->verifyApiKey()) {
+            return;
+        }
+
         $stockId = $params['stockId'];
         if ($_SERVER['REQUEST_METHOD'] === 'PUT') {
             parse_str(file_get_contents('php://input'), $_PUT);
@@ -85,6 +106,10 @@ class StockController {
 
     // Delete a stock
     public function deleteStock($params) {
+        if (!$this->verifyApiKey()) {
+            return;
+        }
+        
         $stockId = $params['stockId'];
         if ($_SERVER['REQUEST_METHOD'] === 'DELETE') {
             $stock = $this->entityManager->getRepository(Stock::class)->find($stockId);

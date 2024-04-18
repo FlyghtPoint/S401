@@ -14,6 +14,19 @@ class StoreController {
         $this->entityManager = $entityManager;
     }
 
+    // API key
+    const API_KEY = 'e8f1997c763';
+
+    // Write a function to verify the API key
+    public function verifyApiKey() {
+        $headers = apache_request_headers();
+        if (!isset($headers['Authorization']) || $headers['Authorization'] !== 'Bearer '.self::API_KEY) {
+            echo json_encode(['error' => 'Invalid API key']);
+            return false;
+        }
+        return true;
+    }
+
     // Get all stores
     public function getAllStores() {
         $storeRepository = $this->entityManager->getRepository(Store::class);
@@ -39,6 +52,10 @@ class StoreController {
 
     // Add a new store
     public function addStore() {
+        if (!$this->verifyApiKey()) {
+            return;
+        }
+
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if (!isset($_POST['storeName']) || !isset($_POST['phone']) || !isset($_POST['email']) || !isset($_POST['street']) || !isset($_POST['city']) || !isset($_POST['state']) || !isset($_POST['zipCode'])) {
                 echo json_encode(['error' => 'Missing required fields']);
@@ -75,6 +92,10 @@ class StoreController {
 
     // Update a store
     public function updateStore($params) {
+        if (!$this->verifyApiKey()) {
+            return;
+        }
+
         $storeId = $params['storeId'];
         if ($_SERVER['REQUEST_METHOD'] === 'PUT') {
             parse_str(file_get_contents('php://input'), $_PUT);
@@ -126,6 +147,10 @@ class StoreController {
 
     // Delete a store
     public function deleteStore($params) {
+        if (!$this->verifyApiKey()) {
+            return;
+        }
+        
         $storeId = $params['storeId'];
         if ($_SERVER['REQUEST_METHOD'] === 'DELETE') {
             $store = $this->entityManager->getRepository(Store::class)->find($storeId);

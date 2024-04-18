@@ -15,6 +15,19 @@ class ProductController {
         $this->entityManager = $entityManager;
     }
 
+    // API key
+    const API_KEY = 'e8f1997c763';
+
+    // Write a function to verify the API key
+    public function verifyApiKey() {
+        $headers = apache_request_headers();
+        if (!isset($headers['Authorization']) || $headers['Authorization'] !== 'Bearer '.self::API_KEY) {
+            echo json_encode(['error' => 'Invalid API key']);
+            return false;
+        }
+        return true;
+    }
+
     // Get all products
     public function getAllProducts() {
         $productsRepository = $this->entityManager->getRepository(Product::class);
@@ -40,6 +53,10 @@ class ProductController {
 
     // Add a new product
     public function addProduct() {
+        if (!$this->verifyApiKey()) {
+            return;
+        }
+
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['productName'])) {
             $productName = $_POST['productName'];
             $brandId = $_POST['brandId'];
@@ -71,6 +88,10 @@ class ProductController {
 
     // Update a product
     public function updateProduct($params) {
+        if (!$this->verifyApiKey()) {
+            return;
+        }
+
         $productId = $params['productId'];
         if ($_SERVER['REQUEST_METHOD'] === 'PUT') {
             parse_str(file_get_contents('php://input'), $_PUT);
@@ -116,6 +137,10 @@ class ProductController {
 
     // Delete a product
     public function deleteProduct($params) {
+        if (!$this->verifyApiKey()) {
+            return;
+        }
+        
         $productId = $params['productId'];
         if ($_SERVER['REQUEST_METHOD'] === 'DELETE') {
             $product = $this->entityManager->getRepository(Product::class)->find($productId);
